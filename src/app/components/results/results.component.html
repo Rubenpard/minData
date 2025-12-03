@@ -1,0 +1,56 @@
+<div class="item">
+  <div class="item__imagen"
+    [ngStyle]="{'background-image': 'url(' + imagen + ')', 'background-size': 'cover', 'background-position': 'center'}"
+    [attr.aria-label]="description" [attr.title]="title">
+    <div class="topic">{{ categorias }}</div>
+  </div>
+  <div class="item__text" [attr.aria-label]="title">
+
+    <p [attr.title]="title + ' ' + dias +  ' ' +  'días' ">
+      <span>{{ title }} <span>{{ dias + ' ' + 'dias' }}</span></span>
+    </p>
+
+    <h2 [attr.title]="description">
+      {{ description }}
+    </h2>
+
+  </div>
+  <div class="item__footer">
+    <div class="footer__price">
+      <p>Desde:</p>
+      <h2 [attr.title]="price">{{price}}</h2>
+      <button title="Ver desglose" (click)="Price()">Ver desglose<i class="bi-chevron-down"></i></button>
+    </div>
+    <button title="Reservar" class="button">Reservar</button>
+  </div>
+
+  <!-- Desglose de precios -->
+  <div *ngIf="isOpen" class="price-breakdown">
+    <div class="price-header">
+      <h4>Desglose de precios</h4>
+      <!-- Botón para cerrar -->
+      <button class="close-btn" (click)="Price()">&#x2715;</button>
+    </div>
+    <div class="desglose__prices">
+      <h4>{{ title }}<span>{{dias}}</span></h4>
+      <div class="d-flex justify-content-between">
+        <p class="fs-6">Precio antes de impuestos:</p>
+        <p class="fw-bolder fs-5">{{price}}</p>
+      </div>
+      <div class="d-flex justify-content-between">
+        <p class="fs-6"> Impuesto:</p>
+        <p class="fw-bolder fs-5"> {{impuesto}}</p>
+      </div>
+      <div class="d-flex justify-content-between">
+        <p class="fs-6">Lorem ipsum:</p>
+        <p class="fw-bolder fs-5">{{lorem}}</p>
+      </div>
+    </div>
+    <div class="desglose__footer">
+      <div class="d-flex justify-content-between">
+        <h4>Precio final:</h4>
+        <p class="fw-bolder fs-5">{{precioAim}}</p>
+      </div>
+    </div>
+  </div>
+</div>

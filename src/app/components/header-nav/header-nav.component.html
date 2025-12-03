@@ -1,0 +1,47 @@
+<nav class="header__nav" role="navigation">
+  <div class="header__logo">
+    <div [innerHTML]="sanitizedIcons['logo']"></div>
+  </div>
+
+  <div class="header__hamburger" (click)="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <ul class="header__menu" [class.active]="isMenuOpen">
+    <li>
+      <div class="nav-item" [ngClass]="{'active': selected === 'aventura'}" (click)="selectNavItem('aventura')">
+        <a href="#" tabindex="1" title="Aventura"><span [innerHTML]="sanitizedIcons['aventura']"></span>Aventura</a>
+        <div class="indicator" *ngIf="selected === 'aventura'"></div>
+      </div>
+    </li>
+    <li>
+      <div class="nav-item" [ngClass]="{'active': selected === 'destinos'}" (click)="selectNavItem('destinos')">
+        <a href="#" tabindex="2" title="Destinos"><span [innerHTML]="sanitizedIcons['destinos']"></span>Destinos</a>
+        <div class="indicator" *ngIf="selected === 'destinos'"></div>
+      </div>
+    </li>
+    <li>
+      <div class="nav-item" [ngClass]="{'active': selected === 'alojamiento'}" (click)="selectNavItem('alojamiento')">
+        <a href="#" tabindex="3" title="Alojamiento"><span
+            [innerHTML]="sanitizedIcons['alojamiento']"></span>Alojamiento</a>
+        <div class="indicator" *ngIf="selected === 'alojamiento'"></div>
+      </div>
+    </li>
+    <li>
+      <div class="nav-item" [ngClass]="{'active': selected === 'nosotros'}" (click)="selectNavItem('nosotros')">
+        <a href="#" tabindex="4" title="Sobre nosotros"><span [innerHTML]="sanitizedIcons['alojamiento']"></span>Sobre
+          nosotros</a>
+        <div class="indicator" *ngIf="selected === 'nosotros'"></div>
+      </div>
+    </li>
+    <li>
+      <div class="header__reserve">
+        <button tabindex="5" title="Reserva">
+          <p>Reserva</p>
+        </button>
+      </div>
+    </li>
+  </ul>
+</nav>

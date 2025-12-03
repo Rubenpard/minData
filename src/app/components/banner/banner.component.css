@@ -1,0 +1,111 @@
+.slider {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+.slider__slides {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 300%;
+  height: 400px;
+}
+.slider__slide {
+  width: 100%;
+  position: relative;
+}
+.slider__slide img {
+  width: 100%;
+  height: auto;
+  height: auto;
+}
+.slider .slider__caption {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+}
+.slider .slider__caption h2 {
+  font-size: 2.5rem;
+  margin-bottom: 0.625rem;
+}
+.slider .slider__caption p {
+  font-size: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+.slider .slider__caption .slider__info-btn {
+  background-color: #ff7f50;
+  color: #4E250E;
+  border: none;
+  cursor: pointer;
+  width: 200px;
+  height: 48px;
+  border-radius: 208px;
+  font-family: "Nunito", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+}
+@media screen and (max-width: 768px) {
+  .slider .slider__caption h2 {
+    font-size: 1.5rem;
+  }
+  .slider .slider__caption p {
+    font-size: 1rem;
+  }
+}
+.slider__btn {
+  width: 40px;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(98, 47, 96, 0.32);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  z-index: 10;
+}
+.slider__btn--left {
+  left: 0;
+}
+.slider__btn--right {
+  right: 0;
+}
+.slider__dots {
+  position: absolute;
+  bottom: 0.625rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+}
+.slider__dots .slider__dot:nth-child(1) {
+  width: 10px;
+  height: auto;
+  margin: 0 5px 12px;
+  background-color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.slider__dots .slider__dot:nth-child(2) {
+  width: 10px;
+  height: auto;
+  margin: 0 5px 12px;
+  background-color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.slider__dots .slider__dot:nth-child(3) {
+  width: 10px;
+  height: auto;
+  margin: 0 5px 12px;
+  background-color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.slider__dots .active {
+  background-color: #ff7f50;
+}/*# sourceMappingURL=banner.component.css.map */

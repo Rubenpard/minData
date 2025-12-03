@@ -1,0 +1,103 @@
+@use "sass:math";
+@import "../media-queries.scss";
+
+// VARIABLES
+$color-text-muted: #6B7D8D;
+
+// Breakpoints
+$breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
+
+// FUNCIONES
+@function rem($px) {
+  @return math.div($px, 16) * 1rem;
+}
+
+
+// MIXINS
+
+@mixin flex($dir: row, $justify: flex-start, $align: center, $wrap: nowrap) {
+  display: flex;
+  flex-direction: $dir;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+}
+
+@mixin respond($size) {
+  @media (min-width: map-get($breakpoints, $size)) {
+    @content;
+  }
+}
+
+@mixin respond-max($size) {
+  @media (max-width: $size) {
+    @content;
+  }
+}
+
+@mixin container-widths {
+  @include respond(sm) { max-width: 540px; }
+  @include respond(md) { max-width: 720px; }
+  @include respond(lg) { max-width: 960px; }
+  @include respond(xl) { max-width: 1140px; }
+  @include respond(xxl) { max-width: 1320px; }
+}
+
+.title {
+  height: rem(74);
+  text-align: center;
+  padding-top: rem(72);
+  margin-bottom: rem(150);
+
+  h1 {
+    font-family: Syne;
+    font-size: clamp(30px, 1vw + 0.5rem, 38px);
+    font-weight: 700;
+    line-height: rem(40);
+  }
+
+  p {
+    font-family: Nunito;
+    font-size: clamp(18px, 1vw + 0.5rem, 22px);
+    font-weight: 400;
+    line-height: rem(26);
+    color: $color-text-muted;
+  }
+}
+
+.container {
+  width: 100%;
+  padding-inline: rem(15);
+  margin-inline: auto;
+
+  @include container-widths;
+}
+
+.row {
+  @include flex(row, flex-start, flex-start, wrap);
+  margin-inline: rem(-15);
+}
+
+h3 {
+  padding: rem(16);
+}
+
+
+@include tablet {
+  .filters {
+    position: absolute;
+    z-index: 10;
+  }
+}
+
+@include mobile {
+  .results {
+    margin-top: rem(80);
+  }
+}

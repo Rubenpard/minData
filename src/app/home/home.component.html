@@ -1,0 +1,68 @@
+<header>
+  <app-header-nav />
+</header>
+
+<section class="banner">
+  <app-banner></app-banner>
+</section>
+
+<div class="title" title="Vive tus propias aventuras. Para los que les gusta explorar y conocer mundo sin complejos" aria-label="Vive tus propias aventuras">
+  <h1>Vive tus propias aventuras</h1>
+  <p class="px-5">Para los que les gusta explorar y conocer mundo sin complejos</p>
+</div>
+
+<main class="container" role="main">
+  <div class="row">
+    <aside class="filters col-lg-3 col-md-5 d-flex flex-column">
+      <app-filters (filtersChanged)="applyFilters($event)"></app-filters>
+    </aside>
+
+    <section class="col-lg-9 d-flex flex-column p-3">
+      <h3>Asia</h3>
+      <div class="container results">
+        <div class="row">
+          <div class="col-md-4 mb-3 col-12" *ngFor="let result of filteredResults | slice:0:3 ; let i = index">
+            <app-results
+              [id]="i"
+              [activeId]="activeDropdown"
+              (toggle)="onToggle($event)"
+              [imagen]="result.imagen"
+              [title]="result.title"
+              [description]="result.description"
+              [price]="result.price.toString()"
+              [dias]="result.dias.toString()"
+              [precioAim]="result.precioAim.toString()"
+              [impuesto]="result.impuesto.toString()"
+               [lorem]="result.lorem"
+              [categorias]="result.categorias" />
+          </div>
+        </div>
+      </div>
+
+      <h3>Asia</h3>
+      <div class="container results">
+        <div class="row">
+          <div class="col-md-4 mb-3 col-12" *ngFor="let result of filteredResults ; let i = index">
+            <app-results
+              [id]="i + 3"
+              [imagen]="result.imagen"
+              [activeId]="activeDropdown"
+              (toggle)="onToggle($event)"
+              [title]="result.title"
+              [description]="result.description"
+              [price]="result.price.toString()"
+              [dias]="result.dias.toString()"
+              [precioAim]="result.precioAim.toString()"
+              [impuesto]="result.impuesto.toString()"
+              [lorem]="result.lorem"
+              [categorias]="result.categorias" />
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer role="contentinfo">
+  <app-footer></app-footer>
+</footer>

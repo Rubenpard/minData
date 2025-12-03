@@ -1,0 +1,224 @@
+@use "sass:math";
+@import "../../media-queries.scss";
+
+
+// VARIABLES
+$color-primario: #FF8F50;
+$color-secundario: #622F60;
+$color-text: #342E34;
+$bg-footer: #FBF6F4;
+
+// FUNCIONES
+@function rem($px) {
+  @return math.div($px, 16) * 1rem;
+}
+
+// MIXINS
+@mixin flex($dir: row, $justify: flex-start, $align: center, $gap: 0) {
+  display: flex;
+  flex-direction: $dir;
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap;
+}
+
+@mixin card-rounded {
+  border-radius: 24px;
+}
+
+@mixin button-base {
+  border-radius: 208px;
+  cursor: pointer;
+  font-family: Nunito;
+  border: none;
+}
+
+@mixin ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// ITEM CARD
+.item {
+  border: 1px solid #ccc;
+  @include card-rounded;
+  box-shadow: 0px 4px 8px 0px #00000033;
+  position: relative;
+
+  &__imagen {
+    width: 100%;
+    height: rem(188);
+    @include card-rounded;
+
+    .topic {
+      max-width: rem(150);
+      height: rem(24);
+      padding: 0 rem(12);
+      margin: rem(10);
+      float: inline-end;
+      background-color: $color-primario;
+      border-radius: 40px;
+      font-size: rem(15);
+      font-weight: 800;
+      font-family: Nunito;
+      @include ellipsis;
+    }
+  }
+
+  &__text {
+    background-color: #fff;
+    padding: rem(16);
+    color: $color-text;
+    font-size: rem(14);
+    font-weight: 500;
+    line-height: rem(18);
+
+    span {
+      color: $color-secundario;
+      font-weight: 700;
+    }
+
+    h2 {
+      font-size: rem(18);
+      font-weight: 700;
+    }
+  }
+
+  &__footer {
+    @include flex(row, space-between, flex-end);
+    width: 100%;
+    height: rem(86);
+    padding: rem(16);
+    background-color: $bg-footer;
+    border-radius: 0 0 24px 24px;
+
+    .footer__price {
+      line-height: 1;
+
+      p {
+        font-size: rem(12);
+        font-weight: 500;
+      }
+
+      h2 {
+        font-size: clamp(10px, 1vw + 0.5rem, 22px);
+        font-weight: 700;
+      }
+
+      button {
+        @include button-base;
+        background: none;
+        padding: 0;
+        color: $color-secundario;
+        text-decoration: underline;
+        font-size: clamp(12px, 0.5vw + 0.5rem, 14px);
+
+        i {
+          font-size: rem(10);
+          padding: rem(2);
+          font-weight: bold;
+        }
+      }
+    }
+
+
+    .button {
+      @include button-base;
+      width: 45%;
+      height: rem(40);
+      border: 1px solid $color-secundario;
+      font-size: clamp(10px, 0.5vw + 0.5rem, 16px);
+      font-weight: 600;
+      text-align: center;
+      line-height: rem(24);
+
+      &:hover {
+        background-color: $color-primario;
+        color: white;
+      }
+    }
+  }
+
+  .price-breakdown {
+    position: absolute;
+    top: rem(370);
+    left: 0;
+    width: rem(400);
+    min-width: rem(400);
+    max-width: rem(544);
+    background-color: #f8f9fa;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 24px;
+    z-index: 10;
+
+    .price-header {
+      @include flex(row, space-between, center);
+      width: 100%;
+      padding: rem(16);
+      background-color: #fbf6f3;
+      border: 1px solid #e0d9e0;
+      border-radius: 24px 24px 0 0;
+      font-size: rem(18);
+
+      h4 {
+        font-weight: 800;
+      }
+    }
+
+    .desglose__prices {
+      padding: rem(12) rem(16);
+    }
+
+    .desglose__footer {
+      padding: rem(16);
+      background-color: #fbf6f3;
+      border-radius: 0 0 24px 24px;
+      border: 1px solid #e0d9e0;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: rem(16);
+      cursor: pointer;
+    }
+
+    h4 {
+      margin-top: rem(10);
+      font-size: rem(18);
+    }
+
+    p {
+      font-size: rem(14);
+      margin-bottom: rem(5);
+    }
+
+    h3 {
+      margin-top: rem(15);
+      font-weight: bold;
+    }
+  }
+}
+
+@include mobile {
+  .item {
+    .price-breakdown {
+      width: rem(350);
+      min-width: rem(350);
+      max-width: rem(350);
+      height: auto;
+      top: rem(300);
+    }
+
+    &__footer {
+      .button {
+        font-size: clamp(16px, 1vw + 0.5rem, 22px);
+      }
+
+      .footer__price h2 {
+        font-size: clamp(20px, 1vw + 0.5rem, 22px);
+      }
+    }
+  }
+}

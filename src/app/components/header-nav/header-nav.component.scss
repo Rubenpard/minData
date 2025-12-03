@@ -1,0 +1,195 @@
+@use "sass:math";
+@import "../../media-queries.scss";
+
+// VARIABLES
+$color-primary: #622f60;
+$color-primary-hover: #6f3985;
+$color-text: #333;
+$color-indicator: orange;
+$header-height: 80px;
+$logo-size: 40px;
+$menu-gap-desktop: 120px;
+$menu-gap-laptop: 30px;
+
+// FUNCIONES
+@function rem($px) {
+  @return math.div($px, 16) * 1rem;
+}
+
+// MIXINS
+@mixin flex($direction: row, $justify: flex-start, $align: center, $gap: 0) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap;
+}
+
+@mixin container($width: 1440px) {
+  width: $width;
+  margin: 0 auto;
+}
+
+@mixin header-menu-base {
+  @include flex(row, flex-start, center, $menu-gap-desktop);
+  list-style: none;
+
+  li a {
+    @include flex(row, center, center);
+    margin-top: rem(20);
+    text-decoration: none;
+    font-weight: bold;
+    color: $color-text;
+
+    span {
+      padding-right: rem(5);
+    }
+  }
+}
+
+@mixin circle-btn($bg, $color) {
+  border: none;
+  background-color: $bg;
+  color: $color;
+  border-radius: 208px;
+  cursor: pointer;
+}
+
+.header__nav {
+  @include flex(row, space-between, center);
+  @include container(1440px);
+  height: $header-height;
+  padding: rem(10) rem(20);
+  background-color: white;
+
+  @include tablet {
+    @include container(100%);
+    padding: 0 rem(10);
+  }
+
+  @include mobile {
+    @include container(100%);
+    padding: rem(10) rem(20);
+  }
+}
+
+.header__logo img {
+  height: $logo-size;
+}
+
+.header__menu {
+  @include header-menu-base;
+  @include laptop {
+    gap: $menu-gap-laptop;
+    width: 100%;
+  }
+
+  @include tablet {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    gap: 0;
+
+    &.active {
+      display: flex;
+      position: absolute;
+      top: $header-height;
+      right: 0;
+      padding: rem(20) 0;
+      background-color: white;
+      z-index: 80;
+    }
+
+    li a {
+      width: 100%;
+    }
+  }
+}
+
+.header__reserve {
+  button {
+    @include circle-btn($color-primary, white);
+    width: 100%;
+    height: rem(48);
+    padding: rem(12) rem(40);
+    margin-top: rem(15);
+    gap: rem(10);
+
+    p {
+      font-family: Nunito;
+      font-size: rem(16);
+      font-weight: 600;
+      line-height: rem(20);
+    }
+
+    &:hover {
+      background-color: $color-primary-hover;
+    }
+  }
+
+  @include tablet {
+    padding: rem(20);
+
+    button {
+      height: rem(36);
+      padding: rem(12) rem(16);
+      font-size: rem(14);
+    }
+  }
+}
+
+.nav-item {
+  position: relative;
+  padding: rem(10);
+  text-align: center;
+  cursor: pointer;
+
+  @include tablet {
+    padding: rem(5);
+  }
+
+  .indicator {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: rem(20);
+    height: rem(10);
+    margin-top: rem(10);
+    background-color: $color-indicator;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    display: none;
+
+    @include tablet {
+      bottom: rem(-5);
+      width: rem(25);
+      transform: rotate(-90deg) translateY(50%);
+    }
+  }
+
+  &.active {
+    color: black;
+
+    .indicator {
+      display: block;
+    }
+  }
+}
+
+.header__hamburger {
+  display: none;
+
+  @include tablet {
+    @include flex(column);
+    cursor: pointer;
+
+    span {
+      width: rem(25);
+      height: rem(4);
+      background: $color-text;
+      margin: rem(4) 0;
+    }
+  }
+
+  @include mobile {
+  }
+}

@@ -1,0 +1,26 @@
+<div class="slider">
+  <!-- Botón previo -->
+  <button class="slider__btn slider__btn--left" (click)="prevSlide()">&#10094;</button>
+
+  <!-- Slides -->
+  <div class="slider__slides" [style.transform]="'translateX(-' + currentSlide * 33.39 + '%)'">
+    <div *ngFor="let slide of slides; let i = index" class="slider__slide"
+      [ngStyle]="{'background-image': 'url(' + slide.image + ')', 'background-size': 'cover', 'background-position': 'center'}">
+      <div class="slider__caption">
+        <h2>{{ slide.title }}</h2>
+        <p>{{ slide.description }}</p>
+        <button class="slider__info-btn">Más información</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botón siguiente -->
+  <button class="slider__btn slider__btn--right" (click)="nextSlide()">&#10095;</button>
+
+  <!-- Indicadores -->
+  <div class="slider__dots">
+    <span *ngFor="let dot of slides; let i = index" class="slider__dot" [ngClass]="{'active': i === currentSlide}"
+      (click)="goToSlide(i)">
+    </span>
+  </div>
+</div>

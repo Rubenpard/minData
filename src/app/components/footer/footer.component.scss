@@ -1,0 +1,50 @@
+@use "sass:math";
+
+
+// VARIABLES
+$footer-bg: #FBF6F4;
+$footer-border: rgba(98, 47, 96, 0.16);
+$footer-bottom-bg: rgba(98, 47, 96, 0.16);
+$footer-height: 180px;
+$footer-bottom-height: 52px;
+
+// FUNCIONES
+@function rem($px) {
+  @return math.div($px, 16) * 1rem;
+}
+
+// MIXINS
+@mixin flex-col-between {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.footer {
+  background: var(--footer-background-default, $footer-bg);
+  width: 100%;
+  height: $footer-height;
+  border-top: 1px solid $footer-border;
+  @include flex-col-between;
+
+  &__logo {
+    @include center;
+    margin: rem(50) 0;
+  }
+
+  &__bottom {
+    width: 100%;
+    height: $footer-bottom-height;
+    padding: rem(16) 0;
+    background-color: $footer-bottom-bg;
+    text-align: center;
+    font-size: clamp(rem(10), 1vw + 0.5rem, rem(14));
+  }
+}

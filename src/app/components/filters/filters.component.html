@@ -1,0 +1,73 @@
+<div class="buttonBox">
+  <button (click)="toggleVisibility()" class="showFilters filter__table--show filter__large--dontshow">
+    <i [innerHTML]="sanitizedIcons['filter']"></i> Ver Filtros
+  </button>
+</div>
+
+<div class="filters"
+  [ngClass]="{'filter__table--dontshow filter__small--dontshow': !isVisible, 'filter__table--show': isVisible}">
+
+  <div class="filter__title">
+    <h5>Filtrar mi búsqueda</h5>
+    <button (click)="toggleVisibility()" class="filter__table--show filter__large--dontshow">x</button>
+  </div>
+
+  <!-- Filtros de Destinos -->
+  <div class="filter__section" [class.open]="filters.destinos.opened">
+    <div class="filter__header" (click)="toggleSection('destinos')">
+      <span><i class="p-1" [innerHTML]="sanitizedIcons['destinos']"></i>Destinos</span>
+      <i class="arrow-icon bi bi-chevron-right"
+        [ngClass]="{ 'down': filters.destinos.opened, 'right': !filters.destinos.opened }"></i>
+    </div>
+    <div class="filter__options" *ngIf="filters.destinos.opened">
+      <p>Contenido Destinos</p>
+    </div>
+  </div>
+
+  <!-- Filtros de Aventura -->
+  <div class="filter__section" [class.open]="filters.aventura.opened">
+    <div class="filter__header" (click)="toggleSection('aventura')">
+      <span><i class="p-1" [innerHTML]="sanitizedIcons['aventura']"></i>Aventura</span>
+      <i class="arrow-icon bi bi-chevron-right"
+        [ngClass]="{ 'down': filters.aventura.opened, 'right': !filters.aventura.opened }"></i>
+    </div>
+    <div class="filter__options ps-4" *ngIf="filters.aventura.opened">
+
+      <div *ngFor="let item of aventuras" class="filter__option">
+        <input type="checkbox" class="checkBox" [(ngModel)]="item.selected" (change)="updateFilters()" />
+        <label [attr.title]="item.name" class="p-1">{{ item.name }}</label> <i class="p-1 bi bi-info-circle"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filtros de Alojamiento -->
+  <div class="filter__section" [class.open]="filters.alojamiento.opened">
+    <div class="filter__header" (click)="toggleSection('alojamiento')">
+      <span><i class="p-1" [innerHTML]="sanitizedIcons['alojamiento']"></i>Alojamiento</span>
+      <i class="arrow-icon bi bi-chevron-right"
+        [ngClass]="{ 'down': filters.alojamiento.opened, 'right': !filters.alojamiento.opened }"></i>
+    </div>
+    <div class="filter__options" *ngIf="filters.alojamiento.opened">
+      <p>Contenido Alojamiento</p>
+    </div>
+  </div>
+
+  <!-- Filtros de Precio -->
+  <div class="filter__section" [class.open]="filters.precio.opened">
+    <div class="filter__header pb-3" (click)="toggleSection('precio')">
+      <span><i class="p-1" [innerHTML]="sanitizedIcons['precio']"></i>Precio</span>
+      <i class="arrow-icon bi bi-chevron-right"
+        [ngClass]="{ 'down': filters.precio.opened, 'right': !filters.precio.opened }"></i>
+    </div>
+
+    <div class="filter__options" *ngIf="filters.precio.opened">
+      <div class="filter__range">
+        <input type="number" [(ngModel)]="filters.precio.min" placeholder="Mínimo" />
+      </div>
+
+      <div class="filter__range my-4">
+        <input type="number" [(ngModel)]="filters.precio.max" placeholder="Máximo" />
+      </div>
+    </div>
+  </div>
+</div>

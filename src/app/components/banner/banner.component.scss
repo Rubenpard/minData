@@ -1,0 +1,152 @@
+@use "sass:math";
+@import "../../media-queries.scss";
+
+// VARIABLES
+$color-primary: #ff7f50;
+$color-secondary: #4E250E;
+$color-overlay: rgba(98, 47, 96, 0.32);
+$color-white: #fff;
+$font-main: 'Nunito', sans-serif;
+$btn-radius: 208px;
+$btn-height: 48px;
+
+
+// FUNCTIONS
+@function rem($px) {
+  @return math.div($px, 16) * 1rem;
+}
+
+@function opacity($color, $alpha) {
+  @return rgba($color, $alpha);
+}
+
+// MIXINS
+
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+@mixin size($w, $h: auto) {
+  width: $w;
+  height: $h;
+}
+
+
+@mixin button-primary {
+  background-color: $color-primary;
+  color: $color-secondary;
+  border: none;
+  cursor: pointer;
+
+  @include size(200px, $btn-height);
+  border-radius: $btn-radius;
+  font-family: $font-main;
+  font-size: rem(16);
+  font-weight: 600;
+  line-height: rem(24);
+}
+
+@import "../../media-queries.scss";
+
+// SLIDER
+
+.slider {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+
+  &__slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 300%; // 3 items
+    height: 400px;
+  }
+
+  &__slide {
+    width: 100%;
+    position: relative;
+
+    img {
+      @include size(100%);
+      height: auto;
+    }
+  }
+
+  .slider__caption {
+    @include absolute-center;
+    text-align: center;
+    color: $color-white;
+
+    h2 {
+      font-size: rem(40);
+      margin-bottom: rem(10);
+    }
+
+    p {
+      font-size: rem(20);
+      margin-bottom: rem(20);
+    }
+
+    .slider__info-btn {
+      @include button-primary;
+    }
+
+    @include tablet {
+      h2 {
+        font-size: rem(24);
+      }
+
+      p {
+        font-size: rem(16);
+      }
+    }
+  }
+
+  &__btn {
+    @include size(40px);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: $color-overlay;
+    color: $color-white;
+    border: none;
+    cursor: pointer;
+    font-size: rem(24);
+    z-index: 10;
+
+    &--left {
+      left: 0;
+    }
+
+    &--right {
+      right: 0;
+    }
+  }
+
+  &__dots {
+    position: absolute;
+    bottom: rem(10);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+
+    @for $i from 1 through 3 {
+      .slider__dot:nth-child(#{$i}) {
+        @include size(10px);
+        margin: 0 5px 12px;
+        background-color: $color-white;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+    }
+
+    .active {
+      background-color: $color-primary;
+    }
+  }
+}

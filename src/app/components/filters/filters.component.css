@@ -1,0 +1,165 @@
+.filters {
+  background-color: #FBF6F4;
+  border-radius: 24px;
+}
+.filters .filter__section {
+  padding: 1.5rem 0.75rem 0 1.5rem;
+}
+.filters .filter__section.open .filter__options {
+  display: block;
+}
+.filters .filter__section .filter__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  cursor: pointer;
+}
+.filters .filter__section .filter__header:hover {
+  color: #ff6600;
+  stroke: #ff6600;
+  fill: #ff6600;
+  cursor: pointer;
+}
+.filters .filter__section .filter__header span {
+  display: flex;
+  align-items: center;
+}
+.filters .filter__section .filter__header span.active {
+  color: #D36524;
+}
+.filters .filter__section .filter__header .arrow-icon {
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+.filters .filter__section .filter__header .arrow-icon.down {
+  transform: rotate(90deg);
+}
+.filters .filter__section .filter__header .arrow-icon.right {
+  transform: rotate(0);
+}
+.filters .filter__section .filter__options {
+  display: none;
+  padding-bottom: 0.75rem;
+}
+.filters .filter__section .filter__options .filter__option {
+  margin: 0.75rem 0;
+}
+.filters .filter__section .filter__options .filter__option i {
+  font-size: 0.625rem;
+}
+.filters .filter__section .filter__range {
+  width: 100%;
+  height: 3rem;
+  border-radius: 208px;
+  border: 1px solid #622F60;
+}
+.filters .filter__section .filter__range input {
+  width: 100%;
+  height: 3rem;
+  border-radius: 208px;
+  border: 1px solid #622F60;
+  padding-left: 3.125rem;
+}
+
+.filter__title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #E0D9E0;
+  font-weight: 700;
+  font-size: 1.125rem;
+  text-align: center;
+}
+.filter__title h5 {
+  padding: 0.75rem 0;
+}
+.filter__title button {
+  border: none;
+  background: transparent;
+  font-size: 2rem;
+  margin-top: -1.25rem;
+}
+
+input[type=checkbox]:checked {
+  accent-color: red;
+}
+
+.showFilters {
+  width: 9.5rem;
+  height: 2.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  padding: 0.5rem 0.875rem;
+  border-radius: 208px;
+  background-color: #FAF7F5;
+  border: 1px solid rgba(98, 47, 96, 0.16);
+  margin-top: -1.375rem;
+  line-height: 0.5;
+}
+
+.filter__table--dontshow,
+.filter__small--dontshow,
+.filter__large--dontshow {
+  display: none !important;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+.tooltip .tooltiptext {
+  visibility: hidden;
+  opacity: 0;
+  width: 7.5rem;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 0.3125rem;
+  padding: 0.3125rem;
+  position: absolute;
+  z-index: 1;
+  transition: opacity 0.3s;
+  left: 50%;
+  margin-left: -3.75rem;
+  bottom: 125%;
+}
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .filters {
+    border-radius: 0;
+    height: 200vh;
+    margin: -242px -50px;
+    position: relative;
+  }
+  .filter__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .filter__table--show {
+    display: block !important;
+  }
+  .showFilters {
+    margin-top: -42px;
+  }
+}
+@media (max-width: 480px) {
+  .buttonBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 4.375rem 0;
+  }
+  .filters {
+    border-radius: 0;
+    width: 108%;
+    height: 200vh;
+    margin: -850px -20px;
+  }
+}/*# sourceMappingURL=filters.component.css.map */
