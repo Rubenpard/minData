@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { BannerComponent } from '../components/banner/banner.component';
+import { Title, Meta } from '@angular/platform-browser';
 import { FiltersComponent } from '../components/filters/filters.component';
 import { HeaderNavComponent } from '../components/header-nav/header-nav.component';
 import { ResultsComponent } from '../components/results/results.component';
@@ -41,7 +42,18 @@ onToggle(id: number) {
   this.activeDropdown = this.activeDropdown === id ? null : id;
 }
 
-  constructor() { }
+  constructor(private title: Title, private meta: Meta) {
+     this.title.setTitle('Página HOME - Avoris');
+     this.meta.updateTag({
+      name: 'description',
+      content: 'Esta es la página de inicio del proyecto.'
+    });
+
+    this.meta.updateTag({
+      property: 'og:title',
+      content: 'Página de inicio'
+    });
+   }
 
   ngOnInit(): void {
     this.updatePrecioAim();
