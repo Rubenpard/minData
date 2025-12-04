@@ -34,8 +34,16 @@
     <div class="filter__options ps-4" *ngIf="filters.aventura.opened">
 
       <div *ngFor="let item of aventuras" class="filter__option">
-        <input type="checkbox" class="checkBox" [(ngModel)]="item.selected" (change)="updateFilters()" />
-        <label [attr.title]="item.name" class="p-1">{{ item.name }}</label> <i class="p-1 bi bi-info-circle"></i>
+        <input
+          type="checkbox"
+          class="checkBox"
+          [(ngModel)]="item.selected"
+          (change)="updateFilters()" />
+        <label [attr.title]="item.name" class="p-1">{{ item.name }}</label>
+        <div class="tooltip">
+        <i class="p-1 bi bi-info-circle"></i>
+            <span class="tooltiptext">{{ item.name }}</span>
+         </div>
       </div>
     </div>
   </div>

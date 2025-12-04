@@ -43,7 +43,7 @@ onToggle(id: number) {
 }
 
   constructor(private title: Title, private meta: Meta) {
-     this.title.setTitle('Página HOME - Avoris');
+     this.title.setTitle('Prueba Ruben Martinez');
      this.meta.updateTag({
       name: 'description',
       content: 'Esta es la página de inicio del proyecto.'
