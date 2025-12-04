@@ -50,14 +50,20 @@ export class FiltersComponent implements OnInit, OnDestroy {
   ) { }
 
   aventuras = [
-    { name: 'Quads', selected: false },
-    { name: 'Parapente', selected: false },
-    { name: 'Rafting', selected: false },
-    { name: 'Explora', selected: false },
-    { name: 'Buceo', selected: false },
-    { name: 'Paracaídas', selected: false },
-    { name: 'Snowboard', selected: false },
-    { name: 'Surf', selected: false }
+    { name: 'Quads', text: 'Aventuras en quads', selected: false },
+    { name: 'Parapente', text: 'Aventuras en parapente', selected: false },
+    { name: 'Rafting',text: 'Aventuras de rafting', selected: false },
+    { name: 'Explora',text: 'Explora terrenos variados', selected: false },
+    { name: 'Buceo',text: 'Bucea en Murcia', selected: false },
+    { name: 'Paracaídas',text: 'Para las caidas', selected: false },
+    { name: 'Snowboard',text: 'Tabla Nieve', selected: false },
+    { name: 'Surf',text:'Surfea', selected: false }
+  ];
+
+  tooltips = [
+    { name: 'Quads', text: 'Explora terrenos variados en vehículos todo terreno.' },
+    { name: 'Parapente', text: 'Vuela y disfruta de vistas panorámicas desde el aire.' },
+    { name: 'Rafting', text: 'Navega por rápidos emocionantes en ríos caudalosos.' },
   ];
 
   @Output() filtersChanged = new EventEmitter<string[]>();
