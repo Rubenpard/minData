@@ -49,6 +49,13 @@ export class FiltersComponent implements OnInit, OnDestroy {
   constructor(private iconsService: IconosService, private sanitizer: DomSanitizer
   ) { }
 
+  destinos = [
+  { name: 'Bangkok',  text: 'Aventuras en Bangkok',  selected: false },
+  { name: 'Murcia',  text: 'Aventuras en Murcia', selected: false },
+  { name: 'Asturias',  text: 'Aventuras en Asturias', selected: false },
+  { name: 'Africa', text: 'Aventuras en Africa', selected: false }
+];
+
   aventuras = [
     { name: 'Quads', text: 'Aventuras en quads', selected: false },
     { name: 'Parapente', text: 'Aventuras en parapente', selected: false },
@@ -60,20 +67,31 @@ export class FiltersComponent implements OnInit, OnDestroy {
     { name: 'Surf',text:'Surfea', selected: false }
   ];
 
-  tooltips = [
-    { name: 'Quads', text: 'Explora terrenos variados en vehículos todo terreno.' },
-    { name: 'Parapente', text: 'Vuela y disfruta de vistas panorámicas desde el aire.' },
-    { name: 'Rafting', text: 'Navega por rápidos emocionantes en ríos caudalosos.' },
-  ];
+  alojamientos = [
+  { name: 'Hotel', text: 'Hotel cuatro estrellas', selected: false },
+  { name: 'Apartamento',text: 'Apartamento con terraza', selected: false },
+  { name: 'Camping', text: 'Camping con baños', selected: false },
+];
 
   @Output() filtersChanged = new EventEmitter<string[]>();
 
-  updateFilters() {
-    const selectedFilters = this.aventuras
-      .filter(item => item.selected)
-      .map(item => item.name);
-    this.filtersChanged.emit(selectedFilters);
-  }
+updateFilters() {
+  const a = this.aventuras
+    .filter(i => i.selected)
+    .map(i => `aventura:${i.name}`);
+
+  const d = this.destinos
+    .filter(i => i.selected)
+    .map(i => `destino:${i.name}`);
+
+  const h = this.alojamientos
+    .filter(i => i.selected)
+    .map(i => `alojamiento:${i.name}`);
+
+  const all = [...a, ...d, ...h];
+
+  this.filtersChanged.emit(all);
+}
 
   toggleSection(section: keyof typeof this.filters) {
     this.filters[section].opened = !this.filters[section].opened;

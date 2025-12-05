@@ -19,8 +19,22 @@
       <i class="arrow-icon bi bi-chevron-right"
         [ngClass]="{ 'down': filters.destinos.opened, 'right': !filters.destinos.opened }"></i>
     </div>
-    <div class="filter__options" *ngIf="filters.destinos.opened">
-      <p>Contenido Destinos</p>
+    <div class="filter__options  ps-4" *ngIf="filters.destinos.opened">
+      <div class="filter__options" *ngIf="filters.destinos.opened">
+  <div *ngFor="let item of destinos" class="filter__option">
+    <input
+      type="checkbox"
+      class="checkBox"
+      [(ngModel)]="item.selected"
+      (change)="updateFilters()" />
+
+    <label class="p-1">{{ item.name }}</label>
+       <div class="tooltip">
+        <i class="p-1 bi bi-info-circle"></i>
+            <span class="tooltiptext">{{ item.text }}</span>
+         </div>
+  </div>
+</div>
     </div>
   </div>
 
@@ -55,8 +69,23 @@
       <i class="arrow-icon bi bi-chevron-right"
         [ngClass]="{ 'down': filters.alojamiento.opened, 'right': !filters.alojamiento.opened }"></i>
     </div>
-    <div class="filter__options" *ngIf="filters.alojamiento.opened">
-      <p>Contenido Alojamiento</p>
+    <div class="filter__options ps-4" *ngIf="filters.alojamiento.opened">
+      <div class="filter__options" *ngIf="filters.alojamiento.opened">
+  <div *ngFor="let item of alojamientos" class="filter__option">
+    <input
+      type="checkbox"
+      class="checkBox"
+      [(ngModel)]="item.selected"
+      (change)="updateFilters()" />
+
+    <label class="p-1">{{ item.name }}</label>
+     <div class="tooltip">
+        <i class="p-1 bi bi-info-circle"></i>
+            <span class="tooltiptext">{{ item.text }}</span>
+         </div>
+  </div>
+</div>
+
     </div>
   </div>
 

@@ -19,22 +19,41 @@ import { FooterComponent } from '../components/footer/footer.component';
 
 export class HomeComponent {
   results = [
-    { imagen: 'assets/resultImage1.jpg', title: 'Aventura en Quads', description: 'Explora en quads', price: 480, dias: 2, precioAim: 0, impuesto: 10, lorem: 'Texto adicional', categorias: ['Buceo'] },
-    { imagen: 'assets/resultImage2.jpg', title: 'Rafting extremo', description: 'Rafting en el río', price: 500, dias: 1, precioAim: 0, impuesto: 20, lorem: 'Texto adicional', categorias: ['Quads','Explora' ] },
-    { imagen: 'assets/resultImage3.jpg', title: 'Rafting extremo', description: 'Rafting en el río', price: 450, dias: 1, precioAim: 0, impuesto: 5, lorem: 'Texto adicional', categorias: ['Rafting'] },
-    { imagen: 'assets/resultImage1.jpg', title: 'Rafting extremo', description: 'Rafting en el río', price: 450, dias: 1, precioAim: 0, impuesto: 10, lorem: 'Texto adicional', categorias: ['Buceo'] },
-    { imagen: 'assets/resultImage2.jpg', title: 'Rafting extremo', description: 'Rafting en el río', price: 450, dias: 1, precioAim: 0, impuesto: 10, lorem: 'Texto adicional', categorias: ['Buceo'] },
-    { imagen: 'assets/resultImage3.jpg', title: 'Rafting extremo', description: 'Rafting en el río', price: 1050, dias: 10, precioAim: 0, impuesto: 10, lorem: 'Texto adicional', categorias: ['Quads','Explora','Paracaídas'] },
+    { imagen: 'assets/resultImage1.jpg', title: 'Aventura en Quads', description: 'Explora en quads', price: 480, dias: 2, precioAim: 0, impuesto: 10, lorem: 'Texto adicional', categorias: ['Buceo'], destino: 'Bangkok', alojamiento: 'Hotel' },
+    { imagen: 'assets/resultImage2.jpg', title: 'Rafting extremo', description: 'Rafting en el río', price: 500, dias: 1, precioAim: 0, impuesto: 20, lorem: 'Texto adicional', categorias: ['Quads','Explora'] , destino: 'Murcia', alojamiento: 'Apartamento' },
+    { imagen: 'assets/resultImage3.jpg', title: 'Rafting extremo', description: 'Rafting en el río', price: 450, dias: 1, precioAim: 0, impuesto: 5, lorem: 'Texto adicional', categorias: ['Rafting'], destino: 'Africa', alojamiento: 'Camping' },
+    { imagen: 'assets/resultImage1.jpg', title: 'Rafting extremo', description: 'Rafting en el río', price: 450, dias: 1, precioAim: 0, impuesto: 10, lorem: 'Texto adicional', categorias: ['Buceo'], destino: 'Asturias', alojamiento: 'Hotel' },
+    { imagen: 'assets/resultImage2.jpg', title: 'Rafting extremo', description: 'Rafting en el río', price: 450, dias: 1, precioAim: 0, impuesto: 10, lorem: 'Texto adicional', categorias: ['Buceo'], destino: 'Bangkok', alojamiento: 'Camping' },
+    { imagen: 'assets/resultImage3.jpg', title: 'Rafting extremo', description: 'Rafting en el río', price: 1050, dias: 10, precioAim: 0, impuesto: 10, lorem: 'Texto adicional', categorias: ['Quads','Explora','Paracaídas'], destino: 'Murcia', alojamiento: 'Apartamento' },
 
   ];
 
   filteredResults = this.results;
 
   applyFilters(selectedFilters: string[]) {
-    this.filteredResults = this.results.filter(result =>
-      selectedFilters.length === 0 || selectedFilters.some(filter => result.categorias.includes(filter))
-    );
-  }
+  this.filteredResults = this.results.filter(result => {
+
+    if (selectedFilters.length === 0) return true;
+
+    return selectedFilters.some(filter => {
+      const [type, value] = filter.split(':');
+
+      if (type === 'aventura') {
+        return result.categorias.includes(value);
+      }
+      if (type === 'destino') {
+        return result.destino === value;
+      }
+      if (type === 'alojamiento') {
+        return result.alojamiento === value;
+      }
+
+      return false;
+    });
+
+  });
+}
+
 
   activeDropdown: number | null = null;
 
