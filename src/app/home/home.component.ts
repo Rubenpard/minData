@@ -36,7 +36,6 @@ applyFilters(selectedFilters: string[]) {
     let min: number | null = null;
     let max: number | null = null;
 
-    // Primero: detectamos filtros de precio
     selectedFilters.forEach(filter => {
       const [type, value] = filter.split(':');
       if (type === 'precio_min') min = Number(value);
@@ -45,17 +44,13 @@ applyFilters(selectedFilters: string[]) {
 
     const precioFinal = result.precioAim;
 
-    // --- FILTRO DE PRECIO ---
     if (min !== null && precioFinal < min) return false;
     if (max !== null && precioFinal > max) return false;
 
-    // --- FILTROS CHECKBOX ---
     const checkboxFilters = selectedFilters.filter(f => !f.startsWith('precio_'));
 
-    // Si NO hay filtros checkbox → aceptar el resultado porque ya pasó el filtro de precio
     if (checkboxFilters.length === 0) return true;
 
-    // Si hay filtros checkbox, aplicarlos
     return checkboxFilters.some(filter => {
       const [type, value] = filter.split(':');
 
