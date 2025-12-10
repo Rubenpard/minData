@@ -3,7 +3,7 @@
 Para ver el proyecto acceder mediante CMD a la ruta de una carpeta donde deseemos descargar el proyecto:
 - cd <direción de la carpeta>
 - git init
-- git clone https://github.com/Rubenpard/avorisPrueba.git
+- git clone https://github.com/Rubenpard/minData
 - accedemos al proyecto y por CMD : npm install
 
 ## Caracteristicas

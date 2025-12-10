@@ -29,29 +29,46 @@ export class HomeComponent {
 
   filteredResults = this.results;
 
-  applyFilters(selectedFilters: string[]) {
+applyFilters(selectedFilters: string[]) {
+  console.log("FILTERS:", selectedFilters);
+
   this.filteredResults = this.results.filter(result => {
+    let min: number | null = null;
+    let max: number | null = null;
 
-    if (selectedFilters.length === 0) return true;
+    // Primero: detectamos filtros de precio
+    selectedFilters.forEach(filter => {
+      const [type, value] = filter.split(':');
+      if (type === 'precio_min') min = Number(value);
+      if (type === 'precio_max') max = Number(value);
+    });
 
-    return selectedFilters.some(filter => {
+    const precioFinal = result.precioAim;
+
+    // --- FILTRO DE PRECIO ---
+    if (min !== null && precioFinal < min) return false;
+    if (max !== null && precioFinal > max) return false;
+
+    // --- FILTROS CHECKBOX ---
+    const checkboxFilters = selectedFilters.filter(f => !f.startsWith('precio_'));
+
+    // Si NO hay filtros checkbox → aceptar el resultado porque ya pasó el filtro de precio
+    if (checkboxFilters.length === 0) return true;
+
+    // Si hay filtros checkbox, aplicarlos
+    return checkboxFilters.some(filter => {
       const [type, value] = filter.split(':');
 
-      if (type === 'aventura') {
-        return result.categorias.includes(value);
-      }
-      if (type === 'destino') {
-        return result.destino === value;
-      }
-      if (type === 'alojamiento') {
-        return result.alojamiento === value;
-      }
+      if (type === 'aventura') return result.categorias.includes(value);
+      if (type === 'destino') return result.destino === value;
+      if (type === 'alojamiento') return result.alojamiento === value;
 
       return false;
     });
-
   });
 }
+
+
 
 
   activeDropdown: number | null = null;

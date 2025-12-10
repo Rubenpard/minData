@@ -65,7 +65,8 @@
   <!-- Filtros de Alojamiento -->
   <div class="filter__section" [class.open]="filters.alojamiento.opened">
     <div class="filter__header" (click)="toggleSection('alojamiento')">
-      <span><i class="p-1" [innerHTML]="sanitizedIcons['alojamiento']"></i>Alojamiento</span>
+      <span>
+        <i class="p-1" [innerHTML]="sanitizedIcons['alojamiento']"></i>Alojamiento</span>
       <i class="arrow-icon bi bi-chevron-right"
         [ngClass]="{ 'down': filters.alojamiento.opened, 'right': !filters.alojamiento.opened }"></i>
     </div>
@@ -98,12 +99,20 @@
     </div>
 
     <div class="filter__options" *ngIf="filters.precio.opened">
-      <div class="filter__range">
-        <input type="number" [(ngModel)]="filters.precio.min" placeholder="Mínimo" />
+      <div class="filter__range input-icon">
+        <i class="p-1 icon" [innerHTML]="sanitizedIcons['precio']"></i>
+        <input type="number"
+        [(ngModel)]="filters.precio.min"
+        placeholder="Mínimo"
+        (input)="updateFilters()"  />
       </div>
 
-      <div class="filter__range my-4">
-        <input type="number" [(ngModel)]="filters.precio.max" placeholder="Máximo" />
+      <div class="filter__range my-4 input-icon">
+        <i class="p-1 icon" [innerHTML]="sanitizedIcons['precio']"></i>
+        <input type="number"
+        [(ngModel)]="filters.precio.max"
+        placeholder="Máximo"
+        (input)="updateFilters()" />
       </div>
     </div>
   </div>
